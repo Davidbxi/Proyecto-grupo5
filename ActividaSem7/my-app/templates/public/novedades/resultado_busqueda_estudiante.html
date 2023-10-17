@@ -1,0 +1,46 @@
+{% for estudiante in dataBusqueda %}
+<tr>
+  <td>{{ loop.index }}</td>
+  <td>{{ estudiante.num_doc}}</td>
+  <td>{{ estudiante.p_nombre }}</td>
+  <td>{{ estudiante.p_apellido }}</td>
+  <td>{{ estudiante.id_ficha }}</td>
+  <td>{{ estudiante.id_comite }}</td>
+  <td>{{ estudiante.id_estado }}</td></td>
+  <td width="10px">
+    <a
+      href="/detalles-novedad/{{ estudiante.num_doc}}"
+      title="Ver envio"
+      type="button"
+      class="btn btn-info btn-sm"
+      data-bs-toggle="tooltip"
+      data-bs-offset="0,4"
+      data-bs-placement="top"
+      data-bs-html="true"
+      title="<span>Ver detalles</span>">
+      <i class="bi bi-eye"></i>
+      Ver detalles
+    </a>
+    <a
+      href="{{ url_for('  ', id = estudiante.num_doc) }}"
+      class="btn btn-success btn-sm"
+      tooltip="Actualizar Registro">
+      <i class="bi bi-arrow-clockwise"></i>
+      Actualizar
+    </a>
+    <a
+      href="#"
+      onclick="eliminarestudiante('{{ estudiante.num_doc }}');"
+      class="btn btn-danger btn-sm"
+      data-bs-toggle="tooltip"
+      data-bs-offset="0,4"
+      data-bs-placement="top"
+      data-bs-html="true"
+      title="<span>Eliminar estudiante {{ estudiante.num_doc }}</span>">
+      <i class="bi bi-trash3"></i>
+      Eliminar
+    </a>
+  </td>
+</tr>
+
+{% endfor %}

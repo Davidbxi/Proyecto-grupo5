@@ -1,0 +1,191 @@
+{% extends 'public/base_cpanel.html' %}
+
+{% block title %}Registrar Nuevo estudiante{% endblock %}
+
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="card" style="border-radius: 0px !important">
+  {% if respuestaestudiante|length %}
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">
+        <a href="/lista-de-novedades">
+          <i class="bi bi-arrow-left-circle"></i>
+        </a>
+        ACTUALIZAR DATOS DE LA SOLICITUD
+      </h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <form
+        class="form-horizontal mx-auto"
+        method="POST"
+        action="{{ url_for('actualizarestudiante', id = respuestaestudiante.num_doc ) }}"
+        autocomplete="off"
+        enctype="multipart/form-data">
+        <input
+          type="text"
+          class="form-control"
+          name="num_doc"
+          value="{{ respuestaestudiante.num_doc }}"
+          required
+          hidden />
+        <div class="card-body">
+          <div class="row text-white bg-success">
+            <div class="col-md-6">
+              <label for="tipo_doc" class="form-label">
+                {{ respuestaestudiante.tipo_doc}} : {{ respuestaestudiante.num_doc}}
+              </label>
+            </div>
+          </div> 
+          <br/>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="p_nombre" class="form-label">
+                Primer Nombre
+              </label>
+              <input
+                type="text"
+                name="p_nombre"
+                value="{{ respuestaestudiante.p_nombre}}"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="s_nombre" class="form-label">
+                Segundo Nombre
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="s_nombre"
+                value="{{ respuestaestudiante.s_nombre}}"
+                required />
+            </div>
+          </div> 
+          <div class="row">
+            <div class="col-md-6">
+              <label for="p_apellido" class="form-label">
+                Primer Apellido
+              </label>
+              <input
+                type="text"
+                name="p_apellido"
+                value="{{ respuestaestudiante.p_apellido}}"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="s_apellido" class="form-label">
+                Segundo Apellido
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="s_apellido"
+                value="{{ respuestaestudiante.s_apellido}}"
+                required />
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="id_ficha" class="form-label">
+                Ficha de Estudiante
+                </label>
+              {% with fichas = {"1": "Análisis y desarrollo de sistemas de información", "2": "Cableado estructurado", "3": "Refrigeramiento de contenedores"} %}
+              <select class="form-select" name="id_ficha">
+                {% for seleccion, valor in fichas.items() %} {% if seleccion ==
+                respuestaestudiante.id_ficha|string %}
+                <option value="{{ clave }}" selected>{{ valor }}</option>
+                {% else %}
+                <option value="{{ clave }}">{{ valor }}</option>
+                {% endif %} {% endfor %}
+              </select>
+              {% endwith %}
+            </div>
+            <div class="col-md-6">
+              <label for="id_comité" class="form-label">
+                Motivo Comité
+              </label>
+              {% with comite = {"1": "Bajo rendiemiento", "2": "Mal comportamiento"} %}
+              <select class="form-select" name="id_comite">
+                {% for seleccion, valor in comite.items() %} {% if seleccion ==
+                respuestaestudiante.id_comite|string %}
+                <option value="{{ clave }}" selected>{{ valor }}</option>
+                {% else %}
+                <option value="{{ clave }}">{{ valor }}</option>
+                {% endif %} {% endfor %}
+              </select>
+              {% endwith %}
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="fecha_asig" class="form-label">
+                Fecha de asignación
+              </label>
+              <input
+              class="form-control"
+              type="date"
+              name="fecha_asig"
+              value="{{ respuestaestudiante.fecha_asig}}"
+              required />
+            </div>
+            <div class="col-md-6">
+              <label for="observacion" class="form-label">
+                Observación
+              </label>
+              <input
+              class="form-control"
+              type="text"
+              name="observacion"
+              value="{{ respuestaestudiante.observacion}}"
+              required />  
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="" class="form-label">
+                Estado del comité
+              </label>
+              {% with estado = {"1": "Inactivo", "2": "En proceso", "3": "Finalizado"} %}
+              <select class="form-select" name="id_estado">
+                {% for seleccion, valor in estado.items() %} {% if seleccion ==
+                respuestaestudiante.id_estado|string %}
+                <option value="{{ clave }}" selected>{{ valor }}</option>
+                {% else %}
+                <option value="{{ clave }}">{{ valor }}</option>
+                {% endif %} {% endfor %}
+              </select>
+              {% endwith %}
+            </div>
+          </div>
+          <div class="mb-3 mt-4 text-center">
+            <button type="submit" class="btn rounded-pill btn-primary">
+              Guardar novedad
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  {% else %}
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center">No existe el estudiante</h3>
+    </div>
+  </div>
+
+  {% endif %}
+</div>
+{% endblock %} {% block customJS %}
+<script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
+{% endblock %}

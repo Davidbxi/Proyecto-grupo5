@@ -1,0 +1,179 @@
+{% extends 'public/base_cpanel.html' %}
+{% block title %}Registro de de solicitud{% endblock %}
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">Enviar nueva solicitud</h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <form
+        class="form-horizontal mx-auto"
+        method="POST"
+        action="/form-registrar-aprendiz"
+        autocomplete="off"
+        enctype="multipart/form-data">
+        <div class="card-body">
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="tipo_doc" class="form-label">
+                Tipo de documento*
+              </label>
+              <select
+                class="form-select"
+                name="tipo_doc"
+                aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="1">Cédula de ciudadania</option>
+                <option value="2">Targeta de identidad</option>
+                <option value="3">Registro Civil</option>
+                <option value="4">Menor sin identificación</option>
+                <option value="5">Adulto sin identificación</option>
+                <option value="6">Cédula de extranjería</option>
+                <option value="7  ">Permiso especial de permanencia</option>
+              </select>
+            </div>
+              <div class="col-md-6">
+                <label for="documento_aprendiz" class="form-label">
+                  Número de identificación*
+                </label>
+                <input
+                type="text"
+                name="documento_aprendiz"
+                class="form-control"/>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+              <label for="p_nombre" class="form-label">
+                Primer Nombre*
+              </label>
+              <input
+                type="text"
+                name="p_nombre"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="s_nombre" class="form-label">
+                Segundo Nombre
+              </label>
+              <input
+                type="text"
+                name="s_nombre"
+                class="form-control"/>
+            </div>
+            <div class="col-md-6">
+              <label for="p_apellido" class="form-label">
+                Primer Apellido*
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="p_apellido" required/>
+            </div>
+            <div class="col-md-6">
+              <label for="s_apellido"" class="form-label">
+                Segundo Apellido
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="s_apellido"/>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="ficha" class="form-label">
+                Ficha*
+              </label>
+              <select
+                class="form-select"
+                name="ficha"
+                aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="1">Análisis y desarrollo de sistemas de información</option>
+                <option value="2">Cableado estructurado</option>
+                <option value="3">Refrigeramiento de contenedores</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="comite" class="form-label">
+                Comite*
+              </label>
+              <select
+                class="form-select"
+                name="comite"
+                aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="1">Bajo rendiemiento</option>
+                <option value="2">Mal comportamiento</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="fecha_comite" class="form-label">
+                Fecha de asignación
+              </label>
+              <input
+                class="form-control"
+                type="date"
+                name="fecha_comite"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="observacion" class="form-label">
+                Observaciones*
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="observacion" required /> 
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="estado" class="form-label">
+               Estado actual*
+              </label>
+              <select
+                class="form-select"
+                name="estado"
+                aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="1">Inactivo</option>
+                <option value="2">En proceso</option>
+                <option value="3">Finalizado</option>
+              </select>
+              
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3 mt-4 text-center">
+            <button type="submit" class="btn rounded-pill btn-primary">
+              Guardar novedad
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>  
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block customJS %}
+<script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
+{% endblock %}

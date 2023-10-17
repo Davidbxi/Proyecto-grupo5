@@ -1,0 +1,98 @@
+{% extends 'public/base_cpanel.html' %}
+{% block title %} Registrar Solicitud {% endblock %}
+
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+
+{% block body %}
+
+{% if (detalle_estudiante|length) %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">
+        <a href="/lista-de-novedades">
+          <i class="bi bi-arrow-left-circle"></i>
+        </a>
+        INFORMACIÓN DEL SOLICITUD
+      </h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombres_aprendiz" class="form-label">
+              Nombres del aprendiz
+            </label>
+            <br />
+            {{ detalle_estudiante.p_nombre}} {{ detalle_estudiante.s_nombre}}
+          </div>
+          <div class="col-md-6">
+            <label for="apellidos_aprendiz" class="form-label">
+              Apellidos del aprendiz
+            </label>
+            <br />
+            {{ detalle_estudiante.p_apellido}} {{ detalle_estudiante.s_apellido}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="estado" class="form-label">
+              Estado de comité
+            </label>
+            <br />
+            {{ detalle_estudiante.id_estado}}
+          </div>
+          <div class="col-md-6">
+            <label for="Comité asignado" class="form-label">
+              Comité
+            </label>
+            <br />
+            {{ detalle_estudiante.id_comite}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="fecha_comite" class="form-label">
+             Fecha de asignación
+            </label>
+            <br />
+            {{ detalle_estudiante.fecha_asig}}
+          </div>
+          <div class="col-md-6">
+            <label for="tipo_doc" class="form-label">
+              Tipo de documento
+            </label>
+            <br />
+            {{ detalle_estudiante.tipo_doc}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="num_doc" class="form-label">
+             Número de documento
+            </label>
+            <br />
+            {{ detalle_estudiante.num_doc}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<h2 class="text-center">
+  No existe el estudiante 
+  <hr />
+</h2>
+{% endif %} {% endblock %}
